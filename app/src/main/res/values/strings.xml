@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">MotoApp</string>
+
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+
+    <string name="logIn">Log In</string>
+    <string name="createAccount">Create New Account</string>
+
+    <string name="signUp">Sign Up</string>
+    <string name="backBtn">Back</string>
+
+    <string name="logOut">Log Out</string>
+
+    <string name="startRoute">START ROUTE</string>
+    <string name="stopRoute">STOP ROUTE</string>
+
+
+</resources>

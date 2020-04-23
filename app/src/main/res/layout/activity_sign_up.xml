@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout   xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_fragment"
+    tools:context=".LogInActivity" >
+
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_button"
+        android:text="@string/backBtn" />
+
+    <LinearLayout
+        android:id="@+id/fragmentSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/logo_round"
+            android:layout_gravity="center_horizontal"/>
+        <!--       username field in login-->
+        <EditText
+            android:id="@+id/username_signUp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_fields"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/user_icon"
+            android:ems="10"
+            android:hint="@string/username"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/colorAccent"
+            android:textSize="21sp"
+            android:drawableLeft="@drawable/user_icon" />
+        <!-- password field in login-->
+        <EditText
+            android:id="@+id/password_signUp"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/background_fields"
+            android:drawablePadding="10dp"
+            android:drawableStart="@drawable/password_icon"
+            android:ems="10"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/colorAccent"
+            android:textSize="21sp"
+            android:drawableLeft="@drawable/password_icon" />
+
+        <!--        LogIn Button-->
+        <Button
+            android:id="@+id/signUpButton"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/background_button"
+            android:text="@string/signUp"
+            android:textAllCaps="false"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="21sp" />
+
+    </LinearLayout>
+</RelativeLayout>
+
