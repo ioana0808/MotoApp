@@ -1,6 +1,5 @@
 package com.android.example.motoapp
 
-import android.app.Activity
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
@@ -15,6 +14,7 @@ class MyLocationService : BroadcastReceiver() {
 
         companion object {
             const val ACTION_PROCESS_UPDATE="com.android.example.motoapp.UPDATE_LOCATION"
+            const val EXTRA_REPLY = "com.android.example.motoapp.REPLY"
         }
 
         @RequiresApi(Build.VERSION_CODES.O)
@@ -38,9 +38,17 @@ class MyLocationService : BroadcastReceiver() {
                             Toast.makeText(context,locationString,Toast.LENGTH_SHORT).show()
                         }
 
-                        //ROOM SET LOCATION AS INPUT IN DB
-                        val locationRoom=Table(locationString)
-                        getMainInstance().insertDB(locationRoom)
+
+                        //ROOM SET LOCATION in db
+//
+                        val replyIntent=Intent()
+//                        if(locationString.isEmpty()){
+//                            setResult(Activity.RESULT_CANCELED,replyIntent)
+//                        }else{
+                        replyIntent.putExtra(EXTRA_REPLY, locationString)
+//                            setResult(Activity.RESULT_OK,replyIntent)
+//                        }
+
                     }
                 }
             }

@@ -29,6 +29,7 @@ class RecordingActivity : AppCompatActivity(){
     private lateinit var  fusedLocationProviderClient: FusedLocationProviderClient
 
     private lateinit var locationViewModel:LocationViewModel
+    private val myLocationServiceRequestCode = 1
 
 
 
@@ -62,8 +63,10 @@ class RecordingActivity : AppCompatActivity(){
         locationViewModel.allLocations.observe(this, Observer{info->
             info?.let{adapter.setInfo(it)}
         })
-
-
+//ROOM
+        val intent=Intent(this@RecordingActivity,MyLocationService::class.java)
+        startActivityForResult(intent,myLocationServiceRequestCode)
+//end room
         instance=this
 
         Dexter.withActivity(this)
@@ -90,9 +93,18 @@ class RecordingActivity : AppCompatActivity(){
         }
     }
 
-    fun insertDB(value:Table){
-        locationViewModel.insert(value)
+//ROOM
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+            data?.getStringExtra(MyLocationService.EXTRA_REPLY)?.let {
+                val locationDB = Table(it)
+                locationViewModel.insert(locationDB)
+            }
     }
+    //END ROOM
+
+
     private fun updateLocation() {
         buildLocationRequest()
 
