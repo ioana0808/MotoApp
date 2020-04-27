@@ -8,7 +8,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Table::class),version = 1,exportSchema = false)
+@Database(entities = arrayOf(Table::class),version =1 ,exportSchema = false)
 public abstract class LocationRoomDatabase:RoomDatabase() {
 
     abstract fun  tableDao():TableDao
@@ -29,8 +29,8 @@ private class LocationDatabaseCallback(
     suspend fun populateDatabase(tableDao:TableDao){
         tableDao.deleteAll()
 
-        val latitudeDB=Table("MyLocationService")
-        tableDao.insert(latitudeDB)
+        //val latitudeDB=Table(1,"")
+       //tableDao.insert(latitudeDB)
     }
 }
 

@@ -2,9 +2,11 @@ package com.android.example.motoapp
 import android.Manifest
 import android.app.Activity
 import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -27,11 +29,7 @@ class RecordingActivity : AppCompatActivity(){
 
     private lateinit var locationRequest: LocationRequest
     private lateinit var  fusedLocationProviderClient: FusedLocationProviderClient
-
     private lateinit var locationViewModel:LocationViewModel
-    private val myLocationServiceRequestCode = 1
-
-
 
     companion object{
         var instance:RecordingActivity?=null
@@ -48,6 +46,9 @@ class RecordingActivity : AppCompatActivity(){
     }
 
 
+//    fun insertDB(value:String){
+//      locationViewModel.insert(Table(1,value))
+//    }
 
 
     override fun onCreate(savedInstanceState:Bundle?){
@@ -59,14 +60,12 @@ class RecordingActivity : AppCompatActivity(){
         recyclerView.adapter=adapter
         recyclerView.layoutManager=LinearLayoutManager(this)
 
+      //update ui with location
         locationViewModel=ViewModelProvider(this).get(LocationViewModel::class.java)
         locationViewModel.allLocations.observe(this, Observer{info->
             info?.let{adapter.setInfo(it)}
         })
-//ROOM
-        val intent=Intent(this@RecordingActivity,MyLocationService::class.java)
-        startActivityForResult(intent,myLocationServiceRequestCode)
-//end room
+
         instance=this
 
         Dexter.withActivity(this)
@@ -87,22 +86,43 @@ class RecordingActivity : AppCompatActivity(){
                 }
             }).check()
 
+
+        //ROOM
+//        val intent=Intent(this@RecordingActivity,MyLocationService::class.java)
+//        startActivityForResult(intent,myLocationServiceRequestCode)
+//end room
+
         stopRecordBtn.setOnClickListener{
             startActivity(Intent(this, DashboardActivity::class.java))
             finish()
         }
     }
 
-//ROOM
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
 
-            data?.getStringExtra(MyLocationService.EXTRA_REPLY)?.let {
-                val locationDB = Table(it)
-                locationViewModel.insert(locationDB)
-            }
-    }
-    //END ROOM
+
+
+//ROOM
+
+//     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, data)
+//
+//         if(requestCode==myLocationServiceRequestCode && resultCode == Activity.RESULT_OK){
+//             data?.getStringExtra(MyLocationService.EXTRA_REPLY)?.let {
+//                 val locationDB = Table(it)
+//                 locationViewModel.insert(locationDB)
+//             }
+//         }else{
+//             Toast.makeText(
+//                 this@RecordingActivity,
+//                 "EMPTY DB",
+//                 Toast.LENGTH_SHORT).show()
+//             }
+//
+//
+//     }
+//    //END ROOM
+
+
 
 
     private fun updateLocation() {

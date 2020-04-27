@@ -6,10 +6,11 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "location_table")
 class Table (
-    @PrimaryKey
-    @ColumnInfo(name = "latitude")val latitudeDB:String
-   // @ColumnInfo(name = "longitude")val longitudeDB:Float
-
-
+    @PrimaryKey(autoGenerate = true)
+    var id:Int,
+    @ColumnInfo(name = "latitude")var latitudeDB:String
 )
+
+
+
 
