@@ -3,13 +3,17 @@ package com.android.example.motoapp
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.hardware.GeomagneticField
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
 import android.os.Build
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.android.example.motoapp.RecordingActivity.Companion.getMainInstance
 import com.google.android.gms.location.LocationResult
 
-class MyLocationService : BroadcastReceiver() {
+class MyLocationService : BroadcastReceiver(){
 
         companion object {
             const val ACTION_PROCESS_UPDATE="com.android.example.motoapp.UPDATE_LOCATION"
@@ -28,12 +32,13 @@ class MyLocationService : BroadcastReceiver() {
 
                         val locationString=StringBuilder(location.latitude.toString())
                             .append("/").append(location.longitude).toString()
-                        val latitude=location.latitude.toString()
-                        val longitude=location.longitude.toString()
+                        val latitude=location.latitude
+                        val longitude=location.longitude
                         val time=System.currentTimeMillis()
 
                         try{
                            getMainInstance().updateTextView(locationString)
+                            //Populated RoomDB with latitude,longitude and time
                             getMainInstance().insertDB(0,latitude,longitude,time)
 
 
@@ -49,5 +54,6 @@ class MyLocationService : BroadcastReceiver() {
 
 
         }
+
 }
 

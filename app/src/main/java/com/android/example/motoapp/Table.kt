@@ -8,8 +8,8 @@ import androidx.room.PrimaryKey
 class Table (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name="id") val id: Int,
-    @ColumnInfo(name = "latitude") val latitudeDB:String,
-    @ColumnInfo(name = "longitude") val longitudeDB:String,
+    @ColumnInfo(name = "latitude") val latitudeDB:Double,
+    @ColumnInfo(name = "longitude") val longitudeDB:Double,
     @ColumnInfo(name = "time") val timeDB:Long
 )
 

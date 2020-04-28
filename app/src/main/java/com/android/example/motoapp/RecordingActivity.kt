@@ -5,6 +5,7 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.hardware.*
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -31,6 +32,7 @@ class RecordingActivity : AppCompatActivity(){
     private lateinit var  fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var locationViewModel:LocationViewModel
 
+
     companion object{
         var instance:RecordingActivity?=null
 
@@ -46,7 +48,7 @@ class RecordingActivity : AppCompatActivity(){
     }
 
 //Function for inserting location into Room
-    fun insertDB(id:Int,latitude:String,longitude:String,time:Long){
+    fun insertDB(id:Int,latitude:Double,longitude:Double,time:Long){
       locationViewModel.insert(Table(id,latitude,longitude,time))
     }
 
@@ -94,32 +96,7 @@ class RecordingActivity : AppCompatActivity(){
     }
 
 
-
-
-//ROOM
-
-//     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//
-//         if(requestCode==myLocationServiceRequestCode && resultCode == Activity.RESULT_OK){
-//             data?.getStringExtra(MyLocationService.EXTRA_REPLY)?.let {
-//                 val locationDB = Table(it)
-//                 locationViewModel.insert(locationDB)
-//             }
-//         }else{
-//             Toast.makeText(
-//                 this@RecordingActivity,
-//                 "EMPTY DB",
-//                 Toast.LENGTH_SHORT).show()
-//             }
-//
-//
-//     }
-//    //END ROOM
-
-
-
-//Updates location
+//LOCATION:Updates location
     private fun updateLocation() {
         buildLocationRequest()
 
@@ -143,4 +120,6 @@ class RecordingActivity : AppCompatActivity(){
         locationRequest.fastestInterval=1000
         locationRequest.smallestDisplacement=10f
     }
+
+
 }
