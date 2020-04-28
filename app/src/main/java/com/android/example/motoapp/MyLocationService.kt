@@ -3,10 +3,6 @@ package com.android.example.motoapp
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.hardware.GeomagneticField
-import android.hardware.Sensor
-import android.hardware.SensorEvent
-import android.hardware.SensorEventListener
 import android.os.Build
 import android.widget.Toast
 import androidx.annotation.RequiresApi
