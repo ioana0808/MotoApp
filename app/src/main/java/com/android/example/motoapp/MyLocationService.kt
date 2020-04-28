@@ -28,10 +28,13 @@ class MyLocationService : BroadcastReceiver() {
 
                         val locationString=StringBuilder(location.latitude.toString())
                             .append("/").append(location.longitude).toString()
+                        val latitude=location.latitude.toString()
+                        val longitude=location.longitude.toString()
+                        val time=System.currentTimeMillis()
 
                         try{
                            getMainInstance().updateTextView(locationString)
-                            getMainInstance().insertDB(4,locationString)
+                            getMainInstance().insertDB(0,latitude,longitude,time)
 
 
                         }catch (e:Exception){

@@ -45,52 +45,48 @@ class RecordingActivity : AppCompatActivity(){
         }
     }
 
-    fun insertDB(id:Int,value:String){
-      locationViewModel.insert(Table(id,value))
+//Function for inserting location into Room
+    fun insertDB(id:Int,latitude:String,longitude:String,time:Long){
+      locationViewModel.insert(Table(id,latitude,longitude,time))
     }
 
-
+/*ON CREATE METHOD*/
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record)
-        //ROOM
+
+//ROOM-UI
         val recyclerView=findViewById<RecyclerView>(R.id.recyclerview)
         val adapter=DatabaseListAdapter(this)
         recyclerView.adapter=adapter
         recyclerView.layoutManager=LinearLayoutManager(this)
 
-      //update ui with location
+  //update ViewModel for db
         locationViewModel=ViewModelProvider(this).get(LocationViewModel::class.java)
         locationViewModel.allLocations.observe(this, Observer{info->
             info?.let{adapter.setInfo(it)}
         })
-
         instance=this
 
+
+//Permissions for getting location from GPS
         Dexter.withActivity(this)
             .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
             .withListener(object: PermissionListener {
                 override fun onPermissionGranted(response: PermissionGrantedResponse?) {
                     updateLocation()
                     }
-
                 override fun onPermissionRationaleShouldBeShown(
                     permission: com.karumi.dexter.listener.PermissionRequest?,
                     token: PermissionToken?
                 ) {
                 }
-
                 override fun onPermissionDenied(response: PermissionDeniedResponse?) {
                     Toast.makeText(this@RecordingActivity,"You must accept this permission",Toast.LENGTH_SHORT).show()
                 }
             }).check()
 
-
-        //ROOM
-        //val intent=Intent(this@RecordingActivity,MyLocationService::class.java)
-//        startActivityForResult(intent,myLocationServiceRequestCode)
-//end room
-
+//Stop recording route button
         stopRecordBtn.setOnClickListener{
             startActivity(Intent(this, DashboardActivity::class.java))
             finish()
@@ -123,7 +119,7 @@ class RecordingActivity : AppCompatActivity(){
 
 
 
-
+//Updates location
     private fun updateLocation() {
         buildLocationRequest()
 

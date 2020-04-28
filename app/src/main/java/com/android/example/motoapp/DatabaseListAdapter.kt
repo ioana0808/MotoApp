@@ -26,6 +26,8 @@ class DatabaseListAdapter internal constructor(
     override fun onBindViewHolder(holder: DatabaseViewHolder, position: Int) {
         val current=info[position]
         holder.infoItemView.text=current.latitudeDB
+        holder.infoItemView.text=current.longitudeDB
+
     }
 
     internal fun setInfo(info:List<Table>){
