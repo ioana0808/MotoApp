@@ -45,10 +45,9 @@ class RecordingActivity : AppCompatActivity(){
         }
     }
 
-
-//    fun insertDB(value:String){
-//      locationViewModel.insert(Table(1,value))
-//    }
+    fun insertDB(id:Int,value:String){
+      locationViewModel.insert(Table(id,value))
+    }
 
 
     override fun onCreate(savedInstanceState:Bundle?){
@@ -88,7 +87,7 @@ class RecordingActivity : AppCompatActivity(){
 
 
         //ROOM
-//        val intent=Intent(this@RecordingActivity,MyLocationService::class.java)
+        //val intent=Intent(this@RecordingActivity,MyLocationService::class.java)
 //        startActivityForResult(intent,myLocationServiceRequestCode)
 //end room
 

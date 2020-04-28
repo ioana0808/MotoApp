@@ -11,7 +11,6 @@ import com.google.android.gms.location.LocationResult
 
 class MyLocationService : BroadcastReceiver() {
 
-    private lateinit var locationViewModel:LocationViewModel
         companion object {
             const val ACTION_PROCESS_UPDATE="com.android.example.motoapp.UPDATE_LOCATION"
         }
@@ -32,24 +31,13 @@ class MyLocationService : BroadcastReceiver() {
 
                         try{
                            getMainInstance().updateTextView(locationString)
-//                            getMainInstance().insertDB(locationString)
-                            locationViewModel.insert(Table(1,locationString))
+                            getMainInstance().insertDB(4,locationString)
+
 
                         }catch (e:Exception){
                             //if app in killed mode
                             Toast.makeText(context,locationString,Toast.LENGTH_SHORT).show()
                         }
-
-
-                        //ROOM SET LOCATION in db
-
-//                        val replyIntent=intent
-//                        if(locationString.isEmpty()){
-//                            MyLocationService().resultCode = RESULT_CANCELED
-//                        }else {
-//                            intent.putExtra(EXTRA_REPLY, locationString)
-//                            MyLocationService().resultCode=RESULT_OK
-//                        }
 
                     }
 
