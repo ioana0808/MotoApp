@@ -34,7 +34,8 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
     private lateinit var locationViewModel:LocationViewModel
 
      lateinit var  sensorManager: SensorManager
-     lateinit var rotationVector:FloatArray
+      lateinit var rotationVector:String
+
     companion object{
         var instance:RecordingActivity?=null
 
@@ -50,7 +51,7 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
     }
 
 //Function for inserting location into Room
-    fun insertDB(id:Int,latitude:Double,longitude:Double,rotation:FloatArray,time:Long){
+    fun insertDB(id:Int, latitude:Double, longitude:Double, rotation: String, time:Long){
       locationViewModel.insert(Table(id,latitude,longitude,rotation,time))
     }
 
@@ -144,7 +145,7 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
 //Set sensor's xyz values to rotationVector,where x=values[0], y=values[1], z=values[2]
     override fun onSensorChanged(event: SensorEvent?) {
 
-        rotationVector= event!!.values.clone()
+        rotationVector= event!!.values.clone().toString()
         rotation_output.text =rotationVector.toString()
 
     }

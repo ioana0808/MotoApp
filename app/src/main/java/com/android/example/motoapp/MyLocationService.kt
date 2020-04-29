@@ -11,7 +11,7 @@ import com.google.android.gms.location.LocationResult
 
 class MyLocationService : BroadcastReceiver(){
 
-    val rotation= getMainInstance().rotationVector
+    private val rotation= getMainInstance().rotationVector
 
         companion object {
             const val ACTION_PROCESS_UPDATE="com.android.example.motoapp.UPDATE_LOCATION"
