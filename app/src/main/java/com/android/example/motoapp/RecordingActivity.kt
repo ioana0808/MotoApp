@@ -1,8 +1,13 @@
 package com.android.example.motoapp
 import android.Manifest
 import android.app.PendingIntent
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -22,13 +27,14 @@ import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_record.*
 
 
-class RecordingActivity : AppCompatActivity(){
+class RecordingActivity : AppCompatActivity(),SensorEventListener{
 
     private lateinit var locationRequest: LocationRequest
     private lateinit var  fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var locationViewModel:LocationViewModel
 
-
+     lateinit var  sensorManager: SensorManager
+     lateinit var rotationVector:FloatArray
     companion object{
         var instance:RecordingActivity?=null
 
@@ -44,14 +50,22 @@ class RecordingActivity : AppCompatActivity(){
     }
 
 //Function for inserting location into Room
-    fun insertDB(id:Int,latitude:Double,longitude:Double,time:Long){
-      locationViewModel.insert(Table(id,latitude,longitude,time))
+    fun insertDB(id:Int,latitude:Double,longitude:Double,rotation:FloatArray,time:Long){
+      locationViewModel.insert(Table(id,latitude,longitude,rotation,time))
     }
 
 /*ON CREATE METHOD*/
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record)
+
+//POSITION SENSOR
+    sensorManager=getSystemService(Context.SENSOR_SERVICE) as SensorManager
+        sensorManager.registerListener(
+            this,
+            sensorManager.getDefaultSensor(Sensor.TYPE_GAME_ROTATION_VECTOR),
+            SensorManager.SENSOR_DELAY_NORMAL
+        )
 
 //ROOM-UI
         val recyclerView=findViewById<RecyclerView>(R.id.recyclerview)
@@ -91,6 +105,11 @@ class RecordingActivity : AppCompatActivity(){
         }
     }
 
+//unregister the sensor
+    override fun onStop() {
+        super.onStop()
+        sensorManager.unregisterListener(this)
+    }
 
 //LOCATION:Updates location
     private fun updateLocation() {
@@ -115,6 +134,19 @@ class RecordingActivity : AppCompatActivity(){
         locationRequest.interval=1000
         locationRequest.fastestInterval=1000
         locationRequest.smallestDisplacement=10f
+    }
+
+
+//Position sensor methods
+    override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
+    }
+
+//Set sensor's xyz values to rotationVector,where x=values[0], y=values[1], z=values[2]
+    override fun onSensorChanged(event: SensorEvent?) {
+
+        rotationVector= event!!.values.clone()
+        rotation_output.text =rotationVector.toString()
+
     }
 
 
