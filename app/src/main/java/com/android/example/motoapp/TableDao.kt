@@ -20,7 +20,7 @@ interface TableDao
 
     //START AND END LATITUDE AND LONGITUDE TO DETERMINE  DISTANCE BETWEEN
     @Query("SELECT  latitude from location_table ORDER BY id DESC LIMIT 1")
-     fun  startLatitude():LiveData<Double>
+     fun  startLatitude():LiveData<Table>
 
     @Query("SELECT  longitude from location_table ORDER BY id DESC LIMIT 1")
     fun  startLongitude():LiveData<Table>
