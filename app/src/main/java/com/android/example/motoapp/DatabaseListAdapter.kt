@@ -28,8 +28,9 @@ class DatabaseListAdapter internal constructor(
         val latitude=current.latitudeDB.toString()
         val longitude=current.longitudeDB.toString()
         val rotation=current.rotationDB.toString()
+
         //Display info on ViewModel
-        holder.infoItemView.text= rotation
+       // holder.infoItemView.text= rotation
        //holder.infoItemView.text= latitude
         //holder.infoItemView.text=longitude
 

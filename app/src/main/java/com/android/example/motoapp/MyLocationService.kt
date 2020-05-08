@@ -35,6 +35,7 @@ class MyLocationService : BroadcastReceiver(){
                         val time=System.currentTimeMillis()
 
                         try{
+
                            getMainInstance().updateTextView(locationString)
                             //Populated RoomDB with latitude,longitude and time
                             getMainInstance().insertDB(0,latitude,longitude,rotation,time)

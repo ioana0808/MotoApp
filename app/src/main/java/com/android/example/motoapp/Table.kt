@@ -1,5 +1,6 @@
 package com.android.example.motoapp
 
+import android.location.Location
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.hardware.Sensor
+
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.location.Location
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -33,8 +35,9 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
     private lateinit var  fusedLocationProviderClient: FusedLocationProviderClient
     private lateinit var locationViewModel:LocationViewModel
 
-     lateinit var  sensorManager: SensorManager
+     private lateinit var  sensorManager: SensorManager
       lateinit var rotationVector:String
+
 
     companion object{
         var instance:RecordingActivity?=null
@@ -46,19 +49,23 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
 
     fun updateTextView(value:String){
         this@RecordingActivity.runOnUiThread{
-            location_output.text=value
+            //location_output.text=value
+           location_output.text=locationViewModel.allLocations.toString()
         }
     }
+
 
 //Function for inserting location into Room
     fun insertDB(id:Int, latitude:Double, longitude:Double, rotation: String, time:Long){
       locationViewModel.insert(Table(id,latitude,longitude,rotation,time))
     }
 
+
 /*ON CREATE METHOD*/
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record)
+
 
 //POSITION SENSOR
     sensorManager=getSystemService(Context.SENSOR_SERVICE) as SensorManager
@@ -144,10 +151,12 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
 
 //Set sensor's xyz values to rotationVector,where x=values[0], y=values[1], z=values[2]
     override fun onSensorChanged(event: SensorEvent?) {
-
         rotationVector= event!!.values.clone().toString()
-        rotation_output.text =rotationVector.toString()
+       rotation_output.text =rotationVector
 
+//    rotation_output.text=          "x= "+event.values[0].toString()+
+//                         " y= "+event.values[1].toString()+
+//                         " z= "+event.values[2].toString()
     }
 
 
