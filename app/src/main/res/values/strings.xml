@@ -15,5 +15,9 @@
     <string name="startRoute">START ROUTE</string>
     <string name="stopRoute">STOP ROUTE</string>
 
-
+<!--menu items-->
+    <string name="register">Register</string>
+    <string name="routes">Your Routes</string>
+    <string name="about">About Us</string>
+    <string name="terms">Terms and Conditions</string>
 </resources>
