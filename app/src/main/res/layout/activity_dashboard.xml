@@ -5,32 +5,8 @@
     android:id="@+id/drawerLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
-    <LinearLayout
-        android:background="@drawable/background_fragment"
-        android:id="@+id/fragmentDashBoard"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical">
-        <Button
-            android:id="@+id/StartRouteBtn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/background_button"
-            android:text="@string/startRoute" />
-
-        <Button
-            android:id="@+id/MainLogoutBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/background_button"
-            android:text="@string/logOut" />
-    </LinearLayout>
+    android:fitsSystemWindows="true"
+    tools:context=".DashboardActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -49,7 +25,61 @@
             local:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             tools:ignore="MissingConstraints" />
 
+
+<!--    <LinearLayout-->
+<!--        android:background="@drawable/background_fragment"-->
+<!--        android:id="@+id/fragmentDashBoard"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:orientation="vertical">-->
+
+<!--        <Button-->
+<!--            android:id="@+id/StartRouteBtn"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_vertical"-->
+<!--            android:layout_marginTop="200dp"-->
+<!--            android:background="@drawable/background_button"-->
+<!--            android:text="@string/startRoute" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/MainLogoutBtn"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="end"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:background="@drawable/background_button"-->
+<!--            android:text="@string/logOut" />-->
+<!--    </LinearLayout>-->
+
+    <FrameLayout
+        android:background="@drawable/background_fragment"
+        android:id="@+id/fragmentDashBoard"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        <Button
+            android:id="@+id/StartRouteBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="200dp"
+            android:background="@drawable/background_button"
+            android:text="@string/startRoute" />
+
+        <Button
+            android:id="@+id/MainLogoutBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/background_button"
+            android:text="@string/logOut" />
+    </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <!-- Container for contents of drawer - use NavigationViewActivity to make configuration easier -->
     <com.google.android.material.navigation.NavigationView
@@ -58,8 +88,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@l"
-        app:itemIconTint="@color/navigation_icon_color_state"
+        app:headerLayout="@layout/navigationview_header"
+        app:itemIconTint="@color/colorPrimaryDark"
         app:menu="@menu/drawer_items" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
