@@ -50,7 +50,7 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
     fun updateTextView(value:String){
         this@RecordingActivity.runOnUiThread{
             //location_output.text=value
-           location_output.text=locationViewModel.allLocations.toString()
+           location_output.text=locationViewModel.startLocation.toString()
         }
     }
 

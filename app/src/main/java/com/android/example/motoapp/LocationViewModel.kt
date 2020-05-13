@@ -13,10 +13,8 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
 
     val allLocations:LiveData<List<Table>>
 //START&END LATITUDE&LONGITUDE
-    val startLatitude:LiveData<Table>
-    val startLongitude:LiveData<Table>
-    val endLatitude:LiveData<Table>
-    val endLongitude:LiveData<Table>
+    val startLocation:LiveData<Table>
+    val endLocation:LiveData<Table>
 
 
     init {
@@ -24,27 +22,19 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
         repository= LocationRepository(tablesDao)
         allLocations=repository.allLocations
 //START&END LATITUDE&LONGITUDE
-        startLatitude=repository.startLatitude
-        startLongitude=repository.startLongitude
-        endLatitude=repository.endLatitude
-        endLongitude=repository.endLongitude
-    }
+        startLocation=repository.startLocation
+        endLocation=repository.endLocation
+        }
 
     //Insert method on back thread
     fun insert(table: Table) =viewModelScope.launch(Dispatchers.IO) {
         repository.insert(table)
     }
 //START&END LATITUDE&LONGITUDE
-    fun startLatitude()=viewModelScope.launch(Dispatchers.IO){
-        startLatitude
+    fun startLocation()=viewModelScope.launch(Dispatchers.IO){
+    startLocation
    }
-    fun startLongitude()=viewModelScope.launch(Dispatchers.IO){
-        startLongitude
-    }
-    fun endLatitude()=viewModelScope.launch(Dispatchers.IO){
-        startLatitude
-    }
-    fun endLongitude()=viewModelScope.launch(Dispatchers.IO){
-        startLongitude
+    fun endLocation()=viewModelScope.launch(Dispatchers.IO){
+        endLocation
     }
 }
