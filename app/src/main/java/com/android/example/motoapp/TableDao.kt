@@ -20,11 +20,11 @@ interface TableDao
 
     //START AND END LATITUDE AND LONGITUDE TO DETERMINE  DISTANCE BETWEEN(end-start=distance)
         //last location
-    @Query("SELECT  * from location_table ORDER BY id DESC LIMIT 1")
-     fun  endLocation():LiveData<Table>
+    @Query("SELECT * from location_table ORDER BY id DESC LIMIT 1")
+     fun  endLocation():LiveData<List<Table>>
 
         //second last location
-    @Query("SELECT  * from location_table ORDER BY id DESC LIMIT 2 OFFSET 1")
-    fun  startLocation():LiveData<Table>
+    @Query("SELECT * from location_table ORDER BY id DESC LIMIT 2 OFFSET 1")
+    fun  startLocation():LiveData<List<Table>>
 
    }

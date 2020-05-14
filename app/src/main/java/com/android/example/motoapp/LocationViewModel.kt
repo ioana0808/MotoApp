@@ -13,8 +13,8 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
 
     val allLocations:LiveData<List<Table>>
 //START&END LATITUDE&LONGITUDE
-    val startLocation:LiveData<Table>
-    val endLocation:LiveData<Table>
+    val startLocation:LiveData<List<Table>>
+    val endLocation:LiveData<List<Table>>
 
 
     init {
@@ -31,10 +31,10 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
         repository.insert(table)
     }
 //START&END LATITUDE&LONGITUDE
-    fun startLocation()=viewModelScope.launch(Dispatchers.IO){
-    startLocation
-   }
-    fun endLocation()=viewModelScope.launch(Dispatchers.IO){
-        endLocation
-    }
+//    fun startLocation():LiveData<Table>{
+//    return startLocation
+//   }
+//    fun endLocation():LiveData<Table>{
+//        return startLocation
+//    }
 }

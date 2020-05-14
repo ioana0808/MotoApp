@@ -7,8 +7,8 @@ class LocationRepository(private val tableDao:TableDao ) {
 
     val allLocations:LiveData<List<Table>> = tableDao.getAllFromTable()
     //START-END LATITUDE & LONGITUDE
-    val startLocation:LiveData<Table> = tableDao.startLocation()
-    val endLocation:LiveData<Table> = tableDao.endLocation()
+    val startLocation:LiveData<List<Table>> = tableDao.startLocation()
+    val endLocation:LiveData<List<Table>> = tableDao.endLocation()
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread

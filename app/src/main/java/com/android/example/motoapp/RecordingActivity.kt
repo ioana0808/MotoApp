@@ -50,7 +50,8 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
     fun updateTextView(value:String){
         this@RecordingActivity.runOnUiThread{
             //location_output.text=value
-           location_output.text=locationViewModel.startLocation.toString()
+           //location_output.text=locationViewModel.startLocation.toString()
+
         }
     }
 
@@ -86,8 +87,8 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
         locationViewModel.allLocations.observe(this, Observer{info->
             info?.let{adapter.setInfo(it)}
         })
+/*OBSERVER PT START AND END  LOCATION AND WHERE SHOULD BE TE FUNC GET??*/
         instance=this
-
 
 //Permissions for getting location from GPS
         Dexter.withActivity(this)
