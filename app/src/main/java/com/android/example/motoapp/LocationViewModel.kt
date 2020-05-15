@@ -1,11 +1,11 @@
 package com.android.example.motoapp
 
 import android.app.Application
+import android.location.Location
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class LocationViewModel(application: Application):AndroidViewModel(application) {
 
@@ -13,8 +13,8 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
 
     val allLocations:LiveData<List<Table>>
 //START&END LATITUDE&LONGITUDE
-    val startLocation:LiveData<List<Table>>
-    val endLocation:LiveData<List<Table>>
+   // val last2records:Float
+
 
 
     init {
@@ -22,19 +22,37 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
         repository= LocationRepository(tablesDao)
         allLocations=repository.allLocations
 //START&END LATITUDE&LONGITUDE
-        startLocation=repository.startLocation
-        endLocation=repository.endLocation
+       //
         }
 
     //Insert method on back thread
     fun insert(table: Table) =viewModelScope.launch(Dispatchers.IO) {
         repository.insert(table)
     }
-//START&END LATITUDE&LONGITUDE
-//    fun startLocation():LiveData<Table>{
-//    return startLocation
-//   }
-//    fun endLocation():LiveData<Table>{
-//        return startLocation
-//    }
+
+
+//DATA PROCESS FUNCTION
+
+//    fun last2recordsAsync()=viewModelScope.launch(Dispatchers.IO) {
+//     repository.last2record()
+//}
+
+    fun last2records()
+    {
+        viewModelScope.launch(Dispatchers.IO) {
+
+                val last2records = repository.last2records()
+                lateinit var results: FloatArray
+                val timeDifference = last2records[1].timeDB - last2records[0].timeDB
+
+                Location.distanceBetween(
+                    last2records[0].latitudeDB,
+                    last2records[0].longitudeDB,
+                    last2records[1].latitudeDB,
+                    last2records[1].longitudeDB,
+                    results
+                )
+        }
+    }
+
 }

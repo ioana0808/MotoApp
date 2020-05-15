@@ -9,7 +9,6 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.location.Location
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -50,9 +49,8 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
     fun updateTextView(value:String){
         this@RecordingActivity.runOnUiThread{
             //location_output.text=value
-           //location_output.text=locationViewModel.startLocation.toString()
-
         }
+
     }
 
 
@@ -85,9 +83,10 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
   //update ViewModel for db
         locationViewModel=ViewModelProvider(this).get(LocationViewModel::class.java)
         locationViewModel.allLocations.observe(this, Observer{info->
-            info?.let{adapter.setInfo(it)}
+            info?.let{adapter.setInfo(it)
+            }
         })
-/*OBSERVER PT START AND END  LOCATION AND WHERE SHOULD BE TE FUNC GET??*/
+
         instance=this
 
 //Permissions for getting location from GPS

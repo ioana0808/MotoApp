@@ -12,6 +12,7 @@ import com.google.android.gms.location.LocationResult
 class MyLocationService : BroadcastReceiver(){
 
     private val rotation= getMainInstance().rotationVector
+    private lateinit var locationViewModel:LocationViewModel
 
         companion object {
             const val ACTION_PROCESS_UPDATE="com.android.example.motoapp.UPDATE_LOCATION"
@@ -37,6 +38,7 @@ class MyLocationService : BroadcastReceiver(){
                         try{
 
                            getMainInstance().updateTextView(locationString)
+
                             //Populated RoomDB with latitude,longitude and time
                             getMainInstance().insertDB(0,latitude,longitude,rotation,time)
 
