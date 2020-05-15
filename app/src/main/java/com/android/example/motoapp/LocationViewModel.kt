@@ -33,11 +33,7 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
 
 //DATA PROCESS FUNCTION
 
-//    fun last2recordsAsync()=viewModelScope.launch(Dispatchers.IO) {
-//     repository.last2record()
-//}
-
-    fun last2records()
+ fun last2records()
     {
         viewModelScope.launch(Dispatchers.IO) {
 

@@ -19,7 +19,7 @@ interface TableDao
     suspend fun deleteAll()
 
     //START AND END LATITUDE AND LONGITUDE TO DETERMINE  DISTANCE BETWEEN(end-start=distance)
-        //ultima si penultima inregistrare fac difereta dintre
+
     @Query("SELECT * from location_table ORDER BY id DESC LIMIT 2")
      fun  last2records():List<Table>
 
