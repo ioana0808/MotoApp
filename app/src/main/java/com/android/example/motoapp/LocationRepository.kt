@@ -15,9 +15,11 @@ class LocationRepository(private val tableDao:TableDao ) {
         tableDao.insert(table)
     }
 
+
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun last2records():List<Table>{
-        return tableDao.last2records()
+        val repoAux=tableDao.last2records()
+        return repoAux
     }
 }
