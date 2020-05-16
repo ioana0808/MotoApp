@@ -49,20 +49,20 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
 
             //CALCUL DISTANTA DINTRE 2 PUNCTE SI CALCUL VITEZA
 
-//             Location.distanceBetween(
-//                last2records[0].latitudeDB,
-//                last2records[0].longitudeDB,
-//                last2records[1].latitudeDB,
-//                last2records[1].longitudeDB,
-//                results
-//            )
-            Location.distanceBetween(
-                13.40,
-                1.43,
-               13.43,
-                1.40,
+             Location.distanceBetween(
+                last2records[0].latitudeDB,
+                last2records[0].longitudeDB,
+                last2records[1].latitudeDB,
+                last2records[1].longitudeDB,
                 results
             )
+//            Location.distanceBetween(
+//                13.40,
+//                1.43,
+//               13.43,
+//                1.40,
+//                results
+//            )
             val timeDifference = last2records[0].timeDB - last2records[1].timeDB
             val speed= results[0]/(timeDifference)
 //distanta ca si text
