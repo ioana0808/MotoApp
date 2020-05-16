@@ -50,7 +50,7 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
         this@RecordingActivity.runOnUiThread{
             //location_output.text=value
         }
-
+       // location_output.text=locationViewModel.last2records()
     }
 
 
@@ -64,6 +64,7 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_record)
+
 
 
 //POSITION SENSOR
@@ -88,7 +89,7 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
         })
 
         instance=this
-
+    locationViewModel.last2records()
 //Permissions for getting location from GPS
         Dexter.withActivity(this)
             .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -152,7 +153,7 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
 //Set sensor's xyz values to rotationVector,where x=values[0], y=values[1], z=values[2]
     override fun onSensorChanged(event: SensorEvent?) {
         rotationVector= event!!.values.clone().toString()
-       rotation_output.text =rotationVector
+       //rotation_output.text =rotationVector
 
 //    rotation_output.text=          "x= "+event.values[0].toString()+
 //                         " y= "+event.values[1].toString()+
