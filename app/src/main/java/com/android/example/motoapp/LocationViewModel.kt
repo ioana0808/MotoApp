@@ -2,12 +2,16 @@ package com.android.example.motoapp
 
 import android.app.Application
 import android.location.Location
+import android.os.Looper
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.android.synthetic.main.activity_record.*
 import kotlinx.coroutines.*
+import java.lang.Runnable
 import java.util.*
+import java.util.logging.Handler
+import kotlin.concurrent.timerTask
 
 class LocationViewModel(application: Application):AndroidViewModel(application) {
 
@@ -36,8 +40,14 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
 //DATA PROCESS FUNCTION
 
   fun last2records(){viewModelScope.launch {
+      val timer=Timer()
       val aux=auxFun()
-      RecordingActivity.getMainInstance().location_output.text=aux
+      timer.scheduleAtFixedRate(timerTask{
+          RecordingActivity.getMainInstance().location_output.text=aux
+      },0,60000)//sa se execute o data la 1 minut fara intarziere
+
+      //RecordingActivity.getMainInstance().location_output.text=aux
+
   } }
 
     suspend fun auxFun():String{
@@ -56,6 +66,7 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
                 last2records[1].longitudeDB,
                 results
             )
+            //PT testare
 //            Location.distanceBetween(
 //                13.40,
 //                1.43,
@@ -65,7 +76,7 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
 //            )
             val timeDifference = last2records[0].timeDB - last2records[1].timeDB
             val speed= results[0]/(timeDifference)
-//distanta ca si text
+            //distanta ca si text
             if(results[0]<1000)
                 if (results[0]<1)
                    distanceM= String.format(Locale.US,"%dm",1)
@@ -77,7 +88,7 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
                 else distanceM="REST"
             else distanceM=String.format(Locale.US,"%2fkm",results[0]/1000)
 
-//Need to adjust format!!!!! km/h !!! put everything in a list and print both from that list into UI
+            //Need to adjust format!!!!! km/h !!! put everything in a list and print both from that list into UI
             val speedString=speed.toString()
 
 
