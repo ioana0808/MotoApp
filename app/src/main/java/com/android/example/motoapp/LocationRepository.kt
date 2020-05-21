@@ -1,6 +1,5 @@
 package com.android.example.motoapp
 
-import android.location.Location.distanceBetween
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
 
@@ -21,5 +20,6 @@ class LocationRepository(private val tableDao:TableDao ) {
     suspend fun last2records():List<Table>{
         val repoAux=tableDao.last2records()
         return repoAux
+
     }
 }

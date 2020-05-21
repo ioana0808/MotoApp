@@ -38,7 +38,7 @@ class MyLocationService : BroadcastReceiver(){
                         try{
 
                            getMainInstance().updateTextView(locationString)
-
+                            getMainInstance().updateUITimer()
                             //Populated RoomDB with latitude,longitude and time
                             getMainInstance().insertDB(0,latitude,longitude,rotation,time)
 

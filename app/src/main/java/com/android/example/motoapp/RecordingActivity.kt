@@ -26,6 +26,8 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_record.*
+import java.util.*
+import kotlin.concurrent.timerTask
 
 
 class RecordingActivity : AppCompatActivity(),SensorEventListener{
@@ -45,6 +47,15 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
             return instance!!
         }
     }
+
+    fun updateUITimer(){
+        val timer= Timer()
+        timer.scheduleAtFixedRate(timerTask{
+            locationViewModel.last2records()
+        },0,600000)
+    }
+
+
 
     fun updateTextView(value:String){
         this@RecordingActivity.runOnUiThread{
