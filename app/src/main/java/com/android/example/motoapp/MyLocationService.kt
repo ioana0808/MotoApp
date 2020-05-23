@@ -8,6 +8,9 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import com.android.example.motoapp.RecordingActivity.Companion.getMainInstance
 import com.google.android.gms.location.LocationResult
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.temporal.ChronoUnit
 
 class MyLocationService : BroadcastReceiver(){
 
@@ -33,14 +36,16 @@ class MyLocationService : BroadcastReceiver(){
                             .append("/").append(location.longitude).toString()
                         val latitude=location.latitude
                         val longitude=location.longitude
-                        val time=System.currentTimeMillis()
+                        val time=LocalTime.now(ZoneId.of("Europe/Bucharest")).truncatedTo(ChronoUnit.SECONDS)
+                        val timeDouble=time.toSecondOfDay()
+                        //val time=System.currentTimeMillis()
 
                         try{
 
                            getMainInstance().updateTextView(locationString)
                             getMainInstance().updateUITimer()
                             //Populated RoomDB with latitude,longitude and time
-                            getMainInstance().insertDB(0,latitude,longitude,rotation,time)
+                            getMainInstance().insertDB(0,latitude,longitude,rotation,timeDouble)
 
 
                         }catch (e:Exception){

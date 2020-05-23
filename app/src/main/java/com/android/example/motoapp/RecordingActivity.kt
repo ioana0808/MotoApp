@@ -26,6 +26,7 @@ import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.single.PermissionListener
 import kotlinx.android.synthetic.main.activity_record.*
+import java.time.LocalTime
 import java.util.*
 import kotlin.concurrent.timerTask
 
@@ -66,7 +67,7 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
 
 
 //Function for inserting location into Room
-    fun insertDB(id:Int, latitude:Double, longitude:Double, rotation: String, time:Long){
+    fun insertDB(id:Int, latitude:Double, longitude:Double, rotation: String, time:Int){
       locationViewModel.insert(Table(id,latitude,longitude,rotation,time))
     }
 
