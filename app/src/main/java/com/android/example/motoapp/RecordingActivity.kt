@@ -56,8 +56,6 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
         },0,600000)
     }
 
-
-
     fun updateTextView(value:String){
         this@RecordingActivity.runOnUiThread{
             //location_output.text=value
@@ -70,6 +68,7 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
     fun insertDB(id:Int, latitude:Double, longitude:Double, rotation: String, time:Int){
       locationViewModel.insert(Table(id,latitude,longitude,rotation,time))
     }
+
 
 
 /*ON CREATE METHOD*/
@@ -121,6 +120,7 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
 
 //Stop recording route button
         stopRecordBtn.setOnClickListener{
+            locationViewModel.deleteAll()
             startActivity(Intent(this, DashboardActivity::class.java))
             finish()
         }
@@ -165,11 +165,6 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
 //Set sensor's xyz values to rotationVector,where x=values[0], y=values[1], z=values[2]
     override fun onSensorChanged(event: SensorEvent?) {
         rotationVector= event!!.values.clone().toString()
-       //rotation_output.text =rotationVector
-
-//    rotation_output.text=          "x= "+event.values[0].toString()+
-//                         " y= "+event.values[1].toString()+
-//                         " z= "+event.values[2].toString()
     }
 
 

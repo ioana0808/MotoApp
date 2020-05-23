@@ -14,6 +14,11 @@ class LocationRepository(private val tableDao:TableDao ) {
         tableDao.insert(table)
     }
 
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun deleteAll(){
+        tableDao.deleteAll()
+    }
 
     @Suppress("RedundantSuspendModifier")
     @WorkerThread

@@ -28,7 +28,6 @@ private class LocationDatabaseCallback(
     }
     suspend fun populateDatabase(tableDao:TableDao){
         //tableDao.deleteAll()
-
         //val latitudeDB=Table(1,"")
        //tableDao.insert(latitudeDB)
     }

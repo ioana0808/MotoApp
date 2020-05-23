@@ -33,7 +33,10 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
     fun insert(table: Table) =viewModelScope.launch(Dispatchers.IO) {
         repository.insert(table)
     }
-
+//Delete ROOM on STOP button
+    fun deleteAll(){viewModelScope.launch {
+      repository.deleteAll()
+}}
 
 //DATA PROCESS FUNCTION
 
