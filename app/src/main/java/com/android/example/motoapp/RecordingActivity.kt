@@ -77,7 +77,6 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
         setContentView(R.layout.activity_record)
 
 
-
 //POSITION SENSOR
     sensorManager=getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensorManager.registerListener(
@@ -120,6 +119,7 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
 
 //Stop recording route button
         stopRecordBtn.setOnClickListener{
+            locationViewModel.endRouteInfo()
             locationViewModel.deleteAll()
             startActivity(Intent(this, DashboardActivity::class.java))
             finish()

@@ -23,6 +23,9 @@ interface TableDao
     @Query("SELECT * from location_table ORDER BY id DESC LIMIT 2")
      fun  last2records():List<Table>
 
+    @Query("SELECT * from location_table")
+    fun endRouteInfo():List<Table>
+
 
 
    }

@@ -23,8 +23,14 @@ class LocationRepository(private val tableDao:TableDao ) {
     @Suppress("RedundantSuspendModifier")
     @WorkerThread
     suspend fun last2records():List<Table>{
-        val repoAux=tableDao.last2records()
-        return repoAux
+        return tableDao.last2records()
 
     }
+    @Suppress("RedundantSuspendModifier")
+    @WorkerThread
+    suspend fun endRouteInfo():List<Table>{
+        return tableDao.endRouteInfo()
+
+    }
+
 }
