@@ -15,7 +15,7 @@ class DatabaseListAdapter internal constructor(
     private var info= emptyList<Table>()  //Cached copy of data
 
     inner class DatabaseViewHolder(itemView: View):RecyclerView.ViewHolder(itemView) {
-        val infoItemView: TextView = itemView.findViewById(R.id.textView)
+        //val infoItemView: TextView = itemView.findViewById(R.id.textView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DatabaseViewHolder {

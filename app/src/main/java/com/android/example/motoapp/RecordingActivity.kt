@@ -54,19 +54,11 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
         },0,600000)
     }
 
-    fun updateTextView(value:String){
-        this@RecordingActivity.runOnUiThread{
-            //location_output.text=value
-        }
-       // location_output.text=locationViewModel.last2records()
-    }
-
 
 //Function for inserting location into Room
     fun insertDB(id:Int, latitude:Double, longitude:Double, rotation: String, time:Int){
       locationViewModel.insert(Table(id,latitude,longitude,rotation,time))
     }
-
 
 
 /*ON CREATE METHOD*/
@@ -95,9 +87,9 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
             info?.let{adapter.setInfo(it)
             }
         })
-
         instance=this
-    locationViewModel.last2records()
+
+        locationViewModel.last2records()
 //Permissions for getting location from GPS
         Dexter.withActivity(this)
             .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
@@ -117,19 +109,9 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
 
 /**Stop recording route button*/
         stopRecordBtn.setOnClickListener{
-
-            //locationViewModel.endRouteInfo()
             startActivity(Intent(this, OverviewInfoActivity::class.java))
-
-//            /**Call method for Summarization information */
-//            locationViewModel.endRouteInfo()
-//            /**Delete all from Room*/
-//            locationViewModel.deleteAll()
-//            /**Start Dashboard*/
-            //startActivity(Intent(this, DashboardActivity::class.java))
-           // finish()
         }
-    }
+}
 
 //unregister the sensor
     override fun onStop() {

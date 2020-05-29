@@ -15,11 +15,9 @@ import java.time.temporal.ChronoUnit
 class MyLocationService : BroadcastReceiver(){
 
     private val rotation= getMainInstance().rotationVector
-    private lateinit var locationViewModel:LocationViewModel
-
-        companion object {
-            const val ACTION_PROCESS_UPDATE="com.android.example.motoapp.UPDATE_LOCATION"
-        }
+    companion object {
+        const val ACTION_PROCESS_UPDATE="com.android.example.motoapp.UPDATE_LOCATION"
+    }
 
         @RequiresApi(Build.VERSION_CODES.O)
         override fun onReceive(context: Context?, intent:Intent?){
@@ -38,29 +36,18 @@ class MyLocationService : BroadcastReceiver(){
                         val longitude=location.longitude
                         val time=LocalTime.now(ZoneId.of("Europe/Bucharest")).truncatedTo(ChronoUnit.SECONDS)
                         val timeDouble=time.toSecondOfDay()
-                        //val time=System.currentTimeMillis()
 
                         try{
-
-                           getMainInstance().updateTextView(locationString)
                             getMainInstance().updateUITimer()
                             //Populated RoomDB with latitude,longitude and time
                             getMainInstance().insertDB(0,latitude,longitude,rotation,timeDouble)
-
-
                         }catch (e:Exception){
                             //if app in killed mode
                             Toast.makeText(context,locationString,Toast.LENGTH_SHORT).show()
                         }
-
                     }
-
                 }
             }
-
-
         }
-
-
 }
 
