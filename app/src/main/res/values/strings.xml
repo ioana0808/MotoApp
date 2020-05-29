@@ -15,6 +15,8 @@
     <string name="startRoute">START ROUTE</string>
     <string name="stopRoute">STOP ROUTE</string>
 
+    <string name="ok_button">OK</string>
+
 <!--menu items-->
     <string name="register">Register</string>
     <string name="routes">Your Routes</string>

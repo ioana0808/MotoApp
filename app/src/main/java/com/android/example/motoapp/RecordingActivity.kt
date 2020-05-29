@@ -5,7 +5,6 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.hardware.Sensor
-
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
@@ -43,7 +42,6 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
 
     companion object{
         var instance:RecordingActivity?=null
-
         fun getMainInstance():RecordingActivity{
             return instance!!
         }
@@ -117,12 +115,19 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
                 }
             }).check()
 
-//Stop recording route button
+/**Stop recording route button*/
         stopRecordBtn.setOnClickListener{
-            locationViewModel.endRouteInfo()
-            locationViewModel.deleteAll()
-            startActivity(Intent(this, DashboardActivity::class.java))
-            finish()
+
+            //locationViewModel.endRouteInfo()
+            startActivity(Intent(this, OverviewInfoActivity::class.java))
+
+//            /**Call method for Summarization information */
+//            locationViewModel.endRouteInfo()
+//            /**Delete all from Room*/
+//            locationViewModel.deleteAll()
+//            /**Start Dashboard*/
+            //startActivity(Intent(this, DashboardActivity::class.java))
+           // finish()
         }
     }
 

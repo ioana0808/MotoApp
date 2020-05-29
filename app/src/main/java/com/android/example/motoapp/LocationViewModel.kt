@@ -6,14 +6,11 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import kotlinx.android.synthetic.main.activity_record.*
-import kotlinx.coroutines.*
+import kotlinx.android.synthetic.main.overview_information.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.math.RoundingMode
-import java.sql.Time
-import java.time.LocalTime
-import java.time.format.DateTimeFormatter
-import java.util.concurrent.TimeUnit
-import kotlin.math.roundToInt
-import kotlin.time.seconds
 
 class LocationViewModel(application: Application):AndroidViewModel(application) {
 
@@ -27,7 +24,7 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
         allLocations=repository.allLocations
         }
 
-    //Insert method on back thread
+//Insert method on back thread
     fun insert(table: Table) =viewModelScope.launch(Dispatchers.IO) {
         repository.insert(table)
     }
@@ -36,28 +33,34 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
       repository.deleteAll()
 }}
 
+    /**Summarization information */
 //DATA PROCESS FUNCTION
  fun endRouteInfo(){viewModelScope.launch {
     val aux=auxEndRouteInfo()
-    RecordingActivity.getMainInstance().location_output.text=aux
+    val distance=aux[0]
+    val avSpeed=aux[1]
+    val time=aux[2]
+        //RecordingActivity.getMainInstance().location_output.text="$distance\n $avSpeed\n $time"
+        OverviewInfoActivity.getOverviewInstance().text_overview.text="$distance\n$avSpeed\n$time"
+        //OverviewInfoActivity().text_overview.text="$distance"
+
  } }
 
-    suspend fun auxEndRouteInfo():String{
+    private suspend fun auxEndRouteInfo():MutableList<String>{
         return withContext(Dispatchers.Default){
 
             val endRouteInfo=repository.endRouteInfo()
             val results=FloatArray(1)
 
-            /**Need to add ROTATION VECTOR info
-             * Need to add each result (timeString, distanceString, averageSpeedString) in a List  */
+            /**Need to add ROTATION VECTOR info*/
             //Global Results
+            val itemList:MutableList<String> = ArrayList()
             val timeString:String
             val distanceString:String
             val averageSpeedString:String
 
             if(endRouteInfo.size>=2)
             {
-                val nrListElem=endRouteInfo.size
                 val lastIndex=endRouteInfo.lastIndex
 
                 val startLatitude=endRouteInfo[0].latitudeDB
@@ -73,7 +76,7 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
                     endLongitude,
                     results )
                 val distanceInKm=(results[0]*0.001).toBigDecimal().setScale(2,RoundingMode.UP)
-                distanceString="Total distance: $distanceInKm km "
+                distanceString="Distance: $distanceInKm km "
 
 
                 //Total time in seconds
@@ -82,7 +85,7 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
                 val s=timeDifference%60
                 val m=(timeDifference/60)%60
                 val h=(timeDifference/(60*60))%24
-                timeString=String.format("%d:%02d:%02d",h,m,s)
+                timeString=String.format("Time: %d:%02d:%02d",h,m,s)
 
 
                 //Average Speed
@@ -92,29 +95,31 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
                     val distanceMToKm=results[0]*0.001
                     //average speed  in km/h
                     val averageSpeedKmH=(distanceMToKm/timeInHours).toBigDecimal().setScale(2,RoundingMode.UP)
-                    averageSpeedString= "$averageSpeedKmH km/h"
+                    averageSpeedString= "Average Speed: $averageSpeedKmH km/h"
             }
 
             else
             {
-                distanceString="0 km"
-                timeString="00:00:00"
-                averageSpeedString="0 km/h"
-
+                distanceString="Distance: 0 km"
+                timeString="Time: 00:00:00"
+                averageSpeedString="Average Speed: 0 km/h"
             }
 
-            return@withContext averageSpeedString
+            itemList.add(distanceString)
+            itemList.add(averageSpeedString)
+            itemList.add(timeString)
+            return@withContext itemList
         }
     }
 
-
+    /**Instant speed */
  //Calculate speed
 fun last2records(){viewModelScope.launch {
   val aux=auxLast2records()
- // RecordingActivity.getMainInstance().location_output.text=aux
+  RecordingActivity.getMainInstance().location_output.text=aux
 } }
 
-    suspend fun auxLast2records():String{
+    private suspend fun auxLast2records():String{
         return withContext(Dispatchers.Default){
 
             val last2records = repository.last2records()
@@ -140,12 +145,12 @@ fun last2records(){viewModelScope.launch {
                     val mToKm=results[0]*0.001
                     //Speed in km/h
                     val speedKmH=(mToKm/timeHours).toBigDecimal().setScale(2,RoundingMode.UP)
-                    speedString= "$speedKmH km/h"
+                    speedString= "Instant Speed: $speedKmH km/h"
             }
 
            else
             {
-                speedString="0 km/h"
+                speedString="Instant Speed: 0 km/h"
             }
             return@withContext speedString
         }
