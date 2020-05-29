@@ -33,14 +33,29 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/toolbar">
+
+        <ImageView
+            android:layout_width="441dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="235dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginRight="12dp"
+            android:layout_marginBottom="150dp"
+            android:src="@drawable/logo_round"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <Button
             android:id="@+id/StartRouteBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="75dp"
             android:layout_gravity="center_vertical"
             android:layout_marginTop="200dp"
             android:background="@drawable/background_button"
-            android:text="@string/startRoute" />
+            android:text="@string/startRoute"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/MainLogoutBtn"

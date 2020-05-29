@@ -15,6 +15,7 @@ import java.time.temporal.ChronoUnit
 class MyLocationService : BroadcastReceiver(){
 
     private val rotation= getMainInstance().rotationVector
+
     companion object {
         const val ACTION_PROCESS_UPDATE="com.android.example.motoapp.UPDATE_LOCATION"
     }

@@ -89,7 +89,6 @@ class RecordingActivity : AppCompatActivity(),SensorEventListener{
         })
         instance=this
 
-        locationViewModel.last2records()
 //Permissions for getting location from GPS
         Dexter.withActivity(this)
             .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)

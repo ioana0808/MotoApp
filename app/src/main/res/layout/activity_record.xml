@@ -15,23 +15,26 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="1.0"
         tools:listitem="@layout/recyclerview_item" />
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginEnd="128dp"
-        android:layout_marginRight="128dp"
-        android:layout_marginBottom="464dp"
-        android:src="@drawable/logo_round"
+    <TextView
+        android:layout_width="403dp"
+        android:layout_height="86dp"
+        android:layout_marginBottom="444dp"
+        android:gravity="center_horizontal"
+        android:text="Recording..."
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:layout_width="match_parent"
@@ -61,6 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
+        android:outlineSpotShadowColor="@color/colorPrimaryDark"
         android:id="@+id/location_output"
         android:layout_width="match_parent"
         android:layout_height="100dp"

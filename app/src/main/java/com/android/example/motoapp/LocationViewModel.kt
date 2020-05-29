@@ -143,14 +143,15 @@ fun last2records(){viewModelScope.launch {
                     val timeHours=timeDifference*0.00027778
                     //Distance in km
                     val mToKm=results[0]*0.001
+
                     //Speed in km/h
                     val speedKmH=(mToKm/timeHours).toBigDecimal().setScale(2,RoundingMode.UP)
-                    speedString= "Instant Speed: $speedKmH km/h"
+                    speedString= "$speedKmH km/h"
             }
 
            else
             {
-                speedString="Instant Speed: 0 km/h"
+                speedString="0 km/h"
             }
             return@withContext speedString
         }

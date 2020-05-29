@@ -22,13 +22,9 @@ class OverviewInfoActivity:AppCompatActivity() {
         setContentView(R.layout.overview_information)
         locationViewModel= ViewModelProvider(this).get(LocationViewModel::class.java)
         instance=this
-        try{
 
             /**Call method for Summarization information */
              locationViewModel.endRouteInfo()
-        }
-        catch (e:Exception){}
-
 
         button_overview.setOnClickListener {
             /**Delete all from Room*/
