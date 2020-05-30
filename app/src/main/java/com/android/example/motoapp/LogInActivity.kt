@@ -25,6 +25,10 @@ class LogInActivity: AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        val actionbar=supportActionBar
+        actionbar!!.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayShowHomeEnabled(true)
+
         btnLogIn = findViewById(R.id.loginButton)
         btnCreateAcc = findViewById(R.id.createAccountBtn)
 
@@ -61,6 +65,10 @@ class LogInActivity: AppCompatActivity(){
             startActivity(Intent(this, SignUpActivity::class.java))
             finish()
         }
+    }
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
     }
 
     //LogIn Function

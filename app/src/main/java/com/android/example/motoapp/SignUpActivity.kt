@@ -7,8 +7,10 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
-
+import kotlinx.android.synthetic.main.activity_dashboard.*
+import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
 class SignUpActivity: AppCompatActivity(){
@@ -24,13 +26,6 @@ class SignUpActivity: AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
-//Backbutton
-        backButton=findViewById(R.id.backBtn)
-        backButton?.setOnClickListener{
-            startActivity(Intent(this, LogInActivity::class.java))
-            finish()
-        }
-
 
         auth=FirebaseAuth.getInstance()
         usernameSignUp= findViewById(R.id.username_signUp)
@@ -40,8 +35,16 @@ class SignUpActivity: AppCompatActivity(){
         btnSignUp?.setOnClickListener{
             signUpUser()
         }
-
+        val actionbar=supportActionBar
+        actionbar!!.setDisplayHomeAsUpEnabled(true)
+        actionbar.setDisplayShowHomeEnabled(true)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
       private fun signUpUser()
     {
         if(usernameSignUp?.text.toString().isEmpty())

@@ -3,10 +3,14 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/navRegister"
-            android:title="@string/register" />
+            android:title="@string/logIn" />
         <item
-            android:id="@+id/navRoutes"
-            android:title="@string/routes" />
+            android:id="@+id/navNewAccount"
+            android:title="@string/createAccount" />
+
+<!--        <item-->
+<!--            android:id="@+id/navRoutes"-->
+<!--            android:title="@string/routes" />-->
         <item
             android:id="@+id/navAbout"
             android:title="@string/about" />

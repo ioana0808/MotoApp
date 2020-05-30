@@ -27,13 +27,18 @@
         android:name=".MyLocationService">
     </receiver>
 
-    <activity android:name=".LogInActivity" />
-    <activity android:name=".RecordingActivity" />
-    <activity android:name=".OverviewInfoActivity" />
+    <activity android:name=".LogInActivity"
+        android:theme="@style/AppTheme"/>
+
+    <activity android:name=".RecordingActivity"
+        android:theme="@style/AppTheme.NoActionBar"/>
+
+    <activity android:name=".OverviewInfoActivity"
+        android:theme="@style/AppTheme.NoActionBar" />
 
     <activity
         android:name=".SignUpActivity"
-        android:theme="@style/AppTheme.NoActionBar" />
+        android:theme="@style/AppTheme"/>
     </application>
 
 </manifest>

@@ -6,15 +6,11 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_fragment"
     tools:context=".LogInActivity" >
-
-    <Button
-        android:id="@+id/backBtn"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarId"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/background_button"
-        android:text="@string/backBtn" />
+        />
 
     <LinearLayout
         android:id="@+id/fragmentSignUp"
@@ -28,9 +24,20 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="80dp"
             android:src="@drawable/logo_round"
             android:layout_gravity="center_horizontal"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="60dp"
+            android:textColor="@color/colorPrimaryDark"
+            android:textStyle="bold"
+            android:text="Create a new account if you don't have one!"
+            android:textSize="20dp"
+            android:textAlignment="center"
+            android:gravity="center_horizontal" />
+
         <!--       username field in login-->
         <EditText
             android:id="@+id/username_signUp"
@@ -41,7 +48,7 @@
             android:drawablePadding="10dp"
             android:drawableStart="@drawable/user_icon"
             android:ems="10"
-            android:hint="@string/username"
+            android:hint="Insert your email address"
             android:inputType="textPersonName"
             android:padding="10dp"
             android:textColor="@color/white"

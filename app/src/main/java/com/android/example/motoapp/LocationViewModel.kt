@@ -40,7 +40,7 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
     val distance=aux[0]
     val avSpeed=aux[1]
     val time=aux[2]
-        OverviewInfoActivity.getOverviewInstance().text_overview.text="$distance\n$avSpeed\n$time"
+        OverviewInfoActivity.getOverviewInstance().text_overview.text="\n\n $distance\n$avSpeed\n$time"
  } }
 
     private suspend fun auxEndRouteInfo():MutableList<String>{

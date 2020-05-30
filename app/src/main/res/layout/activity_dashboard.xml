@@ -35,16 +35,44 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar">
 
         <ImageView
-            android:layout_width="441dp"
+            android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="235dp"
-            android:layout_marginEnd="45dp"
-            android:layout_marginRight="12dp"
-            android:layout_marginBottom="150dp"
+            android:layout_marginBottom="190dp"
             android:src="@drawable/logo_round"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="170dp"
+            android:text="WELCOME TO "
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textSize="30dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="190dp"
+            android:text="MOTORRIDE "
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryDark"
+            android:gravity="center_horizontal"
+            android:textStyle="bold"
+            android:textSize="50dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="370dp"
+            android:gravity="center_horizontal"
+            android:text="Start recording your routes\n and track your progress!"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="25dp" />
 
         <Button
             android:id="@+id/StartRouteBtn"
@@ -57,14 +85,7 @@
             android:textSize="20dp"
             android:textStyle="bold" />
 
-        <Button
-            android:id="@+id/MainLogoutBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/background_button"
-            android:text="@string/logOut" />
+
     </FrameLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -76,9 +97,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/colorPrimary"
         app:headerLayout="@layout/navigationview_header"
-        app:itemIconTint="@color/colorAccent"
         app:menu="@menu/drawer_items" />
 
 </androidx.drawerlayout.widget.DrawerLayout>
