@@ -6,19 +6,23 @@ import android.view.MenuItem
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
 import kotlinx.android.synthetic.main.activity_dashboard.*
 
 class DashboardActivity : AppCompatActivity(){
 
    private lateinit var mDrawerLayout:DrawerLayout
     private lateinit var mToggle: ActionBarDrawerToggle
+    private lateinit var locationViewModel:LocationViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dashboard)
 
-        StartRouteBtn?.setOnClickListener {
+        locationViewModel= ViewModelProvider(this).get(LocationViewModel::class.java)
+        locationViewModel.deleteAll()
 
+        StartRouteBtn?.setOnClickListener {
             startActivity(Intent(this, RecordingActivity::class.java))
             finish()
         }
@@ -35,7 +39,6 @@ class DashboardActivity : AppCompatActivity(){
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     }
-
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(mToggle.onOptionsItemSelected(item)){
