@@ -44,6 +44,12 @@
         android:name=".AboutUsActivity"
         android:theme="@style/AppTheme"/>
 
+    <activity
+        android:name=".TermsConditionsActivity"
+        android:theme="@style/AppTheme"/>
+
+
+
     </application>
 
 

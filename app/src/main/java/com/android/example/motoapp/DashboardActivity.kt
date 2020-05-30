@@ -53,6 +53,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.navAbout->{
                 startActivity(Intent(this,AboutUsActivity::class.java))
             }
+            R.id.navTerms->{
+                startActivity(Intent(this,TermsConditionsActivity::class.java))
+            }
         }
         mDrawerLayout.closeDrawer(GravityCompat.START)
         return true
