@@ -19,6 +19,8 @@
             android:gravity="left"
             android:text="@string/aboutUs"
             android:textSize="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:textStyle="bold" />
 
         <ImageView
