@@ -50,6 +50,9 @@ class DashboardActivity : AppCompatActivity(), NavigationView.OnNavigationItemSe
             R.id.navNewAccount->{
                 startActivity(Intent(this,SignUpActivity::class.java))
             }
+            R.id.navAbout->{
+                startActivity(Intent(this,AboutUsActivity::class.java))
+            }
         }
         mDrawerLayout.closeDrawer(GravityCompat.START)
         return true

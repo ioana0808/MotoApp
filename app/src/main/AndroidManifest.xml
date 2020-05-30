@@ -39,6 +39,12 @@
     <activity
         android:name=".SignUpActivity"
         android:theme="@style/AppTheme"/>
+
+    <activity
+        android:name=".AboutUsActivity"
+        android:theme="@style/AppTheme"/>
+
     </application>
+
 
 </manifest>
