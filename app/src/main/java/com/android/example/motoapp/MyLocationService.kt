@@ -30,7 +30,6 @@ class MyLocationService : BroadcastReceiver(){
                     if(result!=null)
                     {
                         val location = result.lastLocation
-
                         val locationString=StringBuilder(location.latitude.toString())
                             .append("/").append(location.longitude).toString()
                         val latitude=location.latitude

@@ -18,8 +18,10 @@ class OverviewInfoActivity:AppCompatActivity() {
         }
     }
     override fun onCreate(savedInstanceState:Bundle?){
+        //Create Activity
         super.onCreate(savedInstanceState)
         setContentView(R.layout.overview_information)
+        //Instance of ViewModel
         locationViewModel= ViewModelProvider(this).get(LocationViewModel::class.java)
         instance=this
 

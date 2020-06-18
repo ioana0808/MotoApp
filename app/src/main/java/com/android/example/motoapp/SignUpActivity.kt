@@ -3,24 +3,21 @@ package com.android.example.motoapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
-import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_dashboard.*
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_sign_up.*
 
 
 class SignUpActivity: AppCompatActivity(){
 
-    private var btnSignUp: Button?=null
-    private var backButton: Button?=null
     private var usernameSignUp: EditText?=null
     private var passwordSignUp: EditText?=null
 
     private lateinit var auth:FirebaseAuth
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,10 +28,12 @@ class SignUpActivity: AppCompatActivity(){
         usernameSignUp= findViewById(R.id.username_signUp)
         passwordSignUp= findViewById(R.id.password_signUp)
 
-        btnSignUp= findViewById(R.id.signUpButton)
-        btnSignUp?.setOnClickListener{
+
+        signUpButton.setOnClickListener{
+            //val currentUser=auth.currentUser
             signUpUser()
         }
+
         val actionbar=supportActionBar
         actionbar!!.setDisplayHomeAsUpEnabled(true)
         actionbar.setDisplayShowHomeEnabled(true)

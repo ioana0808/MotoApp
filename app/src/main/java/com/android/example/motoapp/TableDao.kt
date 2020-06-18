@@ -1,10 +1,7 @@
 package com.android.example.motoapp
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface TableDao
@@ -14,7 +11,7 @@ interface TableDao
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(table: Table)
-
+//Delete all in Dao
     @Query("DELETE FROM location_table")
     suspend fun deleteAll()
 

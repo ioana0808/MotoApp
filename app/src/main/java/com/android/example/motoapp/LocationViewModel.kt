@@ -78,21 +78,19 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
 
                 //Total time in seconds
                 val timeDifference=(endRouteInfo[lastIndex].timeDB-endRouteInfo[0].timeDB)
-                //convert time in seconds into hh:mm:ss format
+                //convert time from seconds into hh:mm:ss format
                 val s=timeDifference%60
                 val m=(timeDifference/60)%60
                 val h=(timeDifference/(60*60))%24
                 timeString=String.format("Time: %d:%02d:%02d",h,m,s)
 
 
-                //Average Speed
-                    //time in hours
-                    val timeInHours=timeDifference*0.00027778
-                    //distance  in km
-                    val distanceMToKm=results[0]*0.001
-                    //average speed  in km/h
-                    val averageSpeedKmH=(distanceMToKm/timeInHours).toBigDecimal().setScale(2,RoundingMode.UP)
-                    averageSpeedString= "Average Speed: $averageSpeedKmH km/h"
+                //Average Speed in km/h
+                val aux=(results[0]/timeDifference)*3.6
+                //Round average speed with 2 decimals
+                val averageSpeedKmH=aux.toBigDecimal().setScale(2,RoundingMode.UP)
+                //Display format
+                averageSpeedString= "Average Speed: $averageSpeedKmH km/h"
             }
 
             else
@@ -101,7 +99,7 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
                 timeString="Time: 00:00:00"
                 averageSpeedString="Average Speed: 0 km/h"
             }
-
+            //List containing all the results
             itemList.add(distanceString)
             itemList.add(averageSpeedString)
             itemList.add(timeString)
@@ -125,7 +123,7 @@ fun last2records(){viewModelScope.launch {
             //Final global result
             val speedString:String
 
-            //DISTANCE BETWEEN 2 POINTS AND SPEED
+            //DISTANCE BETWEEN 2 POINTS
             if(last2records.size>=2){
                 Location.distanceBetween(
                     last2records[0].latitudeDB,
@@ -136,14 +134,12 @@ fun last2records(){viewModelScope.launch {
                 )
                //Time in seconds
                 val timeDifference = last2records[0].timeDB-last2records[1].timeDB
-                    //Time in hours
-                    val timeHours=timeDifference*0.00027778
-                    //Distance in km
-                    val mToKm=results[0]*0.001
-
-                    //Speed in km/h
-                    val speedKmH=(mToKm/timeHours).toBigDecimal().setScale(2,RoundingMode.UP)
-                    speedString= "$speedKmH km/h"
+                //Calculate and convert speed from m/s into km/h by multiplying it with 3.6
+                val aux=(results[0]/timeDifference)*3.6
+                //Round speed to display only 2 decimals
+                val speedKmH=aux.toBigDecimal().setScale(2,RoundingMode.UP)
+                //Set how it will display
+                speedString= "$speedKmH km/h"
             }
 
            else

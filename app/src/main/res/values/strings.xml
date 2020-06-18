@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MotoApp</string>
+    <string name="app_name">MotorRide</string>
 
     <string name="username">Username</string>
     <string name="password">Password</string>
@@ -26,7 +26,7 @@
     <string name="aboutUs">
                    Hello there! :)\n\n
         I am really glad you ended on this app. \n
-        My name is Ioana and this is my Graduation Theses.\n\n
+        My name is Ioana and this is my Graduation Thesis.\n\n
     MotorRide is a Android Application destined for motorcycle riders. It can record your routes, by clicking on the Start button.
     It can also display the Instant Speed, during your ride and at the of your route it will give you a short overview on your
     just finished route.\n\n

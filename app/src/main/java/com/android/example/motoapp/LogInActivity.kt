@@ -73,20 +73,15 @@ class LogInActivity: AppCompatActivity(){
 
     //LogIn Function
     private fun doLogIn(email: String, password: String){
-
-
         auth?.signInWithEmailAndPassword(email, password)
             ?.addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-
                     val user = Intent(applicationContext , DashboardActivity::class.java)
                     startActivity(user)
                     finish()
                 } else {
                     Toast.makeText(this, "Authentication failed.${task.exception}", Toast.LENGTH_SHORT).show()
-
                 }
-
             }
     }
 
